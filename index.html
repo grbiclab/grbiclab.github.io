@@ -111,280 +111,145 @@
             margin-top: 1px;
         }
 
-        /* ===== 3) Navigation base ===== */
-        /* Main menu bar appearance. */
-        nav {
-            background-color: #4b0082;
-            overflow: hidden;
-        }
+        /* ===== 3) Navigation + Dropdowns ===== */
 
-        nav ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        nav li {
-            position: relative;
-        }
-
-        nav>ul>li {
-            padding: 14px 20px;
-            cursor: pointer;
-            color: white;
-            font-weight: 500;
-        }
-
-        nav li:hover {
-            background-color: #4b0082;
-        }
-
-        /* ===== 4) Highlights carousel ===== */
-        /* Collapsible image slider. */
-        /* ===== COLLAPSIBLE CAROUSEL (FINAL) ===== */
-
-        /* Space from header and overall container */
-        .collapsible-section {
-            width: 100%;
-            max-width: 1200px;
-            margin: 10px auto;
-            padding: 0;
-            border-radius: 12px;
-            background: #f5f1fa;
-            box-shadow: 0 4px 16px transparent;
-            overflow: hidden;
-        }
-
-        /* Purple bar – always visible */
-        .collapsible-section .section-toggle {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgb(80, 0, 130);
-            color: white;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 1.05em;
-            font-weight: 500;
-            letter-spacing: 0.03em;
-        }
-
-        .collapsible-section .section-toggle h3 {
-            margin: 0;
-        }
-
-        .toggle-btn {
-            background: none;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            color: white;
-            font-size: 1.1em;
-            cursor: pointer;
-            width: 32px;
-            height: 32px;
-            padding: 0;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .toggle-btn.spinning {
-            transform: rotate(180deg);
-        }
-
-        .toggle-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        /* Wrapper that shows/hides the carousel content */
-        .carousel-wrapper {
-            background: transparent;
-        }
-
-        /* When collapsed, hide only the carousel, not the bar */
-        .collapsible-section.collapsed .carousel-wrapper {
-            display: none;
-        }
-
-        /* ===== CAROUSEL BODY ===== */
-        .carousel {
-            height: 300px;
-            overflow: hidden;
-            position: relative;
-            margin: 15px 10px 15px;
-            border-radius: 10px;
-            background: transparent;
-        }
-
-        /* Image strip */
-        .carousel-images {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            height: 100%;
-            transition: transform 0.8s ease-in-out;
-        }
-
-        /* Images: fully visible, centered, no cropping */
-        .carousel-images img {
-            max-height: 100%;
-            max-width: 100%;
-            width: 100%;
-            object-fit: contain;
-            flex-shrink: 0;
-            background: transparent;
-        }
-
-        /* Controls overlay */
-        .carousel-controls {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            transform: translateY(-50%);
-            display: flex;
-            justify-content: space-between;
-            padding: 0 0;
-            pointer-events: none;
-        }
-
-        /* Arrow buttons */
-        .carousel-button {
-            pointer-events: all;
-            background-color: rgba(80, 0, 130, 0.8);
-            border: none;
-            padding: 10px 10px;
-            cursor: pointer;
-            color: white;
-            font-size: 1.4em;
-            border-radius: 50%;
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        .carousel-button:hover {
-            background-color: rgba(120, 0, 190, 0.9);
-            transform: scale(1.05);
-        }
-
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 900px) {
-            .collapsible-section {
-                margin: 20px auto 30px;
-                max-width: 95%;
-            }
-
-            .carousel {
-                height: 280px;
-                margin: 10px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .collapsible-section .section-toggle {
-                padding: 8px 14px;
-                font-size: 0.95em;
-            }
-
-            .carousel {
-                height: 220px;
-                margin: 8px;
-            }
-
-            .carousel-button {
-                padding: 8px 10px;
-                font-size: 1.2em;
-            }
-        }
-
-
-        /* ===== 5) Dropdown menus ===== */
-        /* Submenu positioning and hover. */
-        /* Main nav bar style */
         nav {
             background-color: #5e2b97;
-            height: 48px;
-            line-height: 48px;
-            position: relative;
-            z-index: 100;
-            overflow: visible;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
         }
 
+        /* Main menu container */
         nav ul {
             list-style: none;
             margin: 0;
             padding: 0 20px;
             display: flex;
+            justify-content: center;
             align-items: center;
-            height: 48px;
             flex-wrap: nowrap;
         }
 
+        /* Prevent desktop nav from breaking into multiple rows */
+        @media (min-width: 769px) {
+
+            nav ul {
+                overflow-x: auto;
+                scrollbar-width: none;
+            }
+
+            nav ul::-webkit-scrollbar {
+                display: none;
+            }
+
+            nav ul li {
+                flex-shrink: 0;
+            }
+        }
+
+        /* Main menu items */
         nav ul li {
             position: relative;
-            padding: 0 11px;
-            cursor: pointer;
-            color: white;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
         }
 
-        nav ul li a {
+        /* Main buttons */
+        nav ul li a,
+        nav ul li[data-section] {
+            display: block;
+            padding: 5px 12px;
             color: white;
             text-decoration: none;
-            display: block;
-            line-height: 48px;
-            padding: 0 5px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.25s ease;
         }
 
-
-        /* Dropdown menu is absolutely positioned */
-        nav ul li ul.dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 48px;
-            left: 0;
-            background-color: #5e2b97;
-            min-width: auto;
-            padding: 0;
-            flex-direction: row;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Dropdown items style */
-        nav ul li ul.dropdown-menu li {
-            padding: 6px 12px;
-            border-bottom: none;
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        nav ul li ul.dropdown-menu li:last-child {
-            border-right: none;
-        }
-
-        /* Show dropdown on toggle (JS toggle class 'show') */
-        nav ul li ul.dropdown-menu.show {
-            display: flex;
-        }
-
-        /* Optional: add pointer cursor, styles */
+        /* Hover */
         nav ul li:hover>a,
         nav ul li:hover {
             background-color: #764abc;
         }
 
-
-        nav ul li.dropdown::after {
-            content: "▾";
-            /* or use ► or ▼ */
+        /* Dropdown arrow */
+        nav ul li.dropdown>a::after {
+            content: " ▼";
             font-size: 0.7em;
-            margin-left: 0.1px;
-            color: #fff;
+        }
+
+        /* Dropdown menu */
+        nav ul li ul.dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #5e2b97;
+            min-width: 220px;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dropdown items */
+        nav ul li ul.dropdown-menu li {
+            width: 100%;
+        }
+
+        nav ul li ul.dropdown-menu li a {
+            padding: 12px 16px;
+            display: block;
+        }
+
+        nav ul li.dropdown {
+            position: relative;
+        }
+
+        /* Show dropdown */
+        nav ul li ul.dropdown-menu.show {
+            display: flex;
+        }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+
+            nav {
+                position: relative;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0;
+                background-color: #5e2b97;
+            }
+
+            nav ul li {
+                width: 100%;
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            nav ul li a,
+            nav ul li[data-section] {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 14px 20px;
+                text-align: left;
+                background-color: #5e2b97;
+            }
+
+            /* Mobile dropdown */
+            nav ul li ul.dropdown-menu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                background-color: #7340ad;
+            }
+
+            nav ul li ul.dropdown-menu li a {
+                padding-left: 36px;
+            }
         }
 
         /* ===== 6) Page sections ===== */
@@ -679,7 +544,7 @@
             gap: 10px;
             margin-top: 20px;
         }
-        
+
         .gallery-strip {
             display: flex;
             gap: 12px;
@@ -688,21 +553,21 @@
             padding: 10px 4px 14px 4px;
             flex: 1;
         }
-        
+
         .gallery-strip::-webkit-scrollbar {
             height: 10px;
         }
-        
+
         .gallery-strip::-webkit-scrollbar-thumb {
             background: rgba(80, 0, 130, 0.35);
             border-radius: 999px;
         }
-        
+
         .gallery-strip::-webkit-scrollbar-track {
             background: #eee;
             border-radius: 999px;
         }
-        
+
         .gallery-strip-btn {
             background: rgb(80, 0, 130);
             color: white;
@@ -715,51 +580,46 @@
             flex-shrink: 0;
             transition: background 0.25s ease, transform 0.2s ease;
         }
-        
+
         .gallery-strip-btn:hover {
             background: rgb(108, 29, 159);
             transform: scale(1.05);
         }
-        
+
         .gallery-thumb {
             border: none;
             background: white;
             padding: 0;
-            border-radius: 20px;
+            border-radius: 12px;
             overflow: hidden;
-            width: 180px;
-            flex: 0 0 180px;
+            min-width: 170px;
+            max-width: 170px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
             cursor: pointer;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
             text-align: left;
-            display: flex;
-            flex-direction: column;
         }
-        
+
         .gallery-thumb:hover {
             transform: translateY(-4px);
-            box-shadow: 0px 10px 22px rgba(0, 0, 0, 0.16);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
         }
-        
+
         .gallery-thumb-img {
             width: 100%;
-            height: 120px;
+            height: 130px;
             object-fit: cover;
             display: block;
-            flex-shrink: 0;
         }
-        
+
         .gallery-thumb-label {
             display: block;
             padding: 10px 12px;
-            font-size: 0.8rem;
-            line-height: 1.35;
+            font-size: 0.9rem;
             color: rgb(80, 0, 130);
             font-weight: 600;
             background: #faf7fd;
             border-top: 1px solid #eee;
-            white-space: normal;
         }
 
         /* Lightbox */
@@ -1361,26 +1221,6 @@
         #backToTopIcon {
             font-weight: 100;
             font-size: 17px;
-        }
-
-
-        /* ===== RESPONSIVE DESIGN ===== */
-        @media (max-width: 768px) {
-            header {
-                height: 200px;
-            }
-
-            header h1 {
-                font-size: 1.8em;
-            }
-
-            nav ul {
-                flex-direction: column;
-            }
-
-            nav li ul {
-                position: static;
-            }
         }
     </style>
 </head>
@@ -2176,7 +2016,7 @@
                 <a href="#" target="_blank" rel="noopener noreferrer" class="member-name">
                     <strong>Dr. Joseane Moreira do Nascimento</strong>
                 </a>
-                <p><strong><i>Postdoctoral Associate</strong></i></p>
+                <p><strong><i>Research Associate</strong></i></p>
 
                 <p>
                 <ul>
@@ -3217,7 +3057,7 @@
     </button>
 
 
-    <!-- ===== JAVASCRIPT ===== -->
+  <!-- ===== JAVASCRIPT ===== -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const toggleBtn = document.getElementById('carouselToggle');
@@ -3339,60 +3179,36 @@
             showImage(currentIndex);
         }, 8000);
 
-        // Dropdown menu functionality with toggle
-        document.addEventListener('DOMContentLoaded', function () {
-            // Select all dropdown parent menu items
-            const dropdowns = document.querySelectorAll('nav ul li.dropdown');
-            dropdowns.forEach(dropdown => {
-                dropdown.addEventListener('click', function (e) {
-                    // Prevent default action and stop propagation to avoid unintended behaviors
-                    e.stopPropagation();
 
-                    // Toggle the display of the submenu
-                    const menu = this.querySelector('ul.dropdown-menu');
-                    if (menu) {
-                        menu.classList.toggle('show');
-                    }
+        // DROPDOWN MENUS
+        const dropdownLinks = document.querySelectorAll('nav li.dropdown > a');
 
-                    // Close other open dropdowns (optional)
-                    dropdowns.forEach(other => {
-                        if (other !== dropdown) {
-                            const otherMenu = other.querySelector('ul.dropdown-menu');
-                            if (otherMenu) {
-                                otherMenu.classList.remove('show');
-                            }
-                        }
-                    });
-                });
-            });
+        dropdownLinks.forEach(link => {
 
-            // Close dropdowns if clicking outside
-            document.addEventListener('click', function () {
-                dropdowns.forEach(dropdown => {
-                    const menu = dropdown.querySelector('ul.dropdown-menu');
-                    if (menu) {
-                        menu.classList.remove('show');
-                    }
-                });
-            });
-        });
+            link.addEventListener('click', function (e) {
 
-        // Alternative dropdown menu functionality
-        document.querySelectorAll('nav ul li.dropdown > a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent default link behavior if needed (for anchors)
-                const parentLi = link.parentElement;
-                const submenu = parentLi.querySelector('.dropdown-menu');
+                e.preventDefault();
+                e.stopPropagation();
 
-                // Toggle the submenu visibility
-                submenu.classList.toggle('show');
+                const dropdown = this.parentElement;
+                const menu = dropdown.querySelector('.dropdown-menu');
 
-                // Optional: Close other open submenus
-                document.querySelectorAll('.dropdown-menu.show').forEach(other => {
-                    if (other !== submenu) {
+                // Close others
+                document.querySelectorAll('.dropdown-menu').forEach(other => {
+                    if (other !== menu) {
                         other.classList.remove('show');
                     }
                 });
+
+                // Toggle current
+                menu.classList.toggle('show');
+            });
+        });
+
+        // Click outside closes everything
+        document.addEventListener('click', function () {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.remove('show');
             });
         });
 
